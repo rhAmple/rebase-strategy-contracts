@@ -5,11 +5,15 @@ import {
     IRebaseStrategy
 } from "rhAmple-contracts/interfaces/IRebaseStrategy.sol";
 
+// Copied from https://github.com/ampleforth/ampleforth-contracts/blob/master/contracts/MedianOracle.sol.
 interface IOracle {
     function getData() external returns (uint, bool);
 }
 
 contract MainnetStrategyV1 is IRebaseStrategy {
+
+    //--------------------------------------------------------------------------
+    // Constants
 
     // @todo Copied from Ampleforth Dashboard.
     /// @dev The CPI value at Ample's launch.
@@ -20,6 +24,9 @@ contract MainnetStrategyV1 is IRebaseStrategy {
 
     /// @dev Ample's decimals.
     uint private constant DECIMALS = 9;
+
+    //--------------------------------------------------------------------------
+    // Storage
 
     // @todo Docs about 18 decimal?
     //  Push from Ampleforth: 118734666666666669240
@@ -35,6 +42,9 @@ contract MainnetStrategyV1 is IRebaseStrategy {
     /// @dev The price target is in 18 decimal precision.
     address public ampleCPIOracle;
 
+    //--------------------------------------------------------------------------
+    // Constructor
+
     constructor(address ampleMarketOracle_, address ampleCPIOracle_) {
         // Make sure that both oracles are working.
         bool isValid;
@@ -47,6 +57,9 @@ contract MainnetStrategyV1 is IRebaseStrategy {
         ampleMarketOracle = ampleMarketOracle_;
         ampleCPIOracle = ampleCPIOracle_;
     }
+
+    //--------------------------------------------------------------------------
+    // IRebaseStrategy Functions
 
     /// @inheritdoc IRebaseStrategy
     function getSignal() external returns (bool, bool) {
