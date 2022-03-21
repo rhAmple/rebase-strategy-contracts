@@ -23,8 +23,6 @@ contract MainnetStrategyV1 is IRebaseStrategy {
     /// @dev Copied from UFragmentsPolicy.
     uint private constant DECIMALS = 18;
 
-    event Log(uint targetRate);
-
     //--------------------------------------------------------------------------
     // Storage
 
@@ -74,7 +72,6 @@ contract MainnetStrategyV1 is IRebaseStrategy {
 
         // Compute Ample's current target rate.
         uint targetRate = cpi * (10**DECIMALS) / BASE_CPI;
-        emit Log(targetRate);
 
         // Fetch Ample's current exchange rate.
         uint exchangeRate;
