@@ -15,32 +15,31 @@ contract MainnetStrategyV1 is IRebaseStrategy {
     //--------------------------------------------------------------------------
     // Constants
 
-    // @todo Copied from Ampleforth Dashboard.
     /// @dev The CPI value at Ample's launch.
-    /// @dev Is in 18 decimals precision for cents, i.e. 100e18 = 1$.
-    uint private constant BASE_CPI = 109200000000000000000;
-    //                                  ^ 18th decimal
-    //                            => 109 cent = 1.09 USD
+    /// @dev Copied from https://web-api.ampleforth.org/eth/token-info.
+    ///      Trailing zero's added for 18 decimal precision.
+    uint private constant BASE_CPI = 109195000000000010000;
 
-    /// @dev Ample's decimals.
-    uint private constant DECIMALS = 9;
+    /// @dev Copied from UFragmentsPolicy.
+    uint private constant DECIMALS = 18;
+
+    event Log(uint targetRate);
 
     //--------------------------------------------------------------------------
     // Storage
 
-    // @todo Docs about 18 decimal?
-    //  Push from Ampleforth: 118734666666666669240
-    //  Is in 18 decimals, but in cents!
+    // cpi Oracle    : 0xa759f960dd59a1ad32c995ecabe802a0c35f244f
+    // market Oracle : 0x99C9775E076FDF99388C029550155032Ba2d8914
+
     /// @notice The Ample market price oracle address.
     /// @dev Changeable by owner.
-    /// @dev The price is in 18 decimal precision.
-    address public ampleMarketOracle;
+    /// @dev The value is in 18 decimal precision and cent denominated.
+    address public immutable ampleMarketOracle;
 
-    // @todo Docs about 18 decimal, price target?
     /// @notice The Ample CPI oracle address.
     /// @dev Changeable by owner.
-    /// @dev The price target is in 18 decimal precision.
-    address public ampleCPIOracle;
+    /// @dev The price target is in 18 decimal precision cent denominated.
+    address public immutable ampleCPIOracle;
 
     //--------------------------------------------------------------------------
     // Constructor
@@ -75,6 +74,7 @@ contract MainnetStrategyV1 is IRebaseStrategy {
 
         // Compute Ample's current target rate.
         uint targetRate = cpi * (10**DECIMALS) / BASE_CPI;
+        emit Log(targetRate);
 
         // Fetch Ample's current exchange rate.
         uint exchangeRate;
