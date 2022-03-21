@@ -10,6 +10,10 @@ build: ## Build project
 test: ## Run whole testsuite
 	forge test -vvv
 
+.PHONY: update
+update: ## Update dependencies
+	forge update
+
 .PHONY: testDeployment
 testDeployment: ## Run deployment tests
 	forge test -vvv --match-contract "Deployment"
