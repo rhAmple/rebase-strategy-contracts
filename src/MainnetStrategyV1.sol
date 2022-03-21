@@ -26,9 +26,6 @@ contract MainnetStrategyV1 is IRebaseStrategy {
     //--------------------------------------------------------------------------
     // Storage
 
-    // cpi Oracle    : 0xa759f960dd59a1ad32c995ecabe802a0c35f244f
-    // market Oracle : 0x99C9775E076FDF99388C029550155032Ba2d8914
-
     /// @notice The Ample market price oracle address.
     /// @dev Changeable by owner.
     /// @dev The value is in 18 decimal precision and cent denominated.
