@@ -3,13 +3,15 @@ pragma solidity 0.8.10;
 
 import "ds-test/test.sol";
 
+import "forge-std/stdlib.sol";
+import "forge-std/Vm.sol";
+
 import "../MainnetStrategyV1.sol";
 
-import {HEVM} from "./utils/HEVM.sol";
 import {OracleMock} from "./utils/mocks/OracleMock.sol";
 
 contract MainnetStrategyV1Test is DSTest {
-    HEVM internal constant EVM = HEVM(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D);
+    Vm internal constant vm = Vm(HEVM_ADDRESS);
 
     // SuT
     MainnetStrategyV1 strategy;
