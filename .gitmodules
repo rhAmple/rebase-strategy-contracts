@@ -4,3 +4,6 @@
 [submodule "lib/rhAmple-contracts"]
 	path = lib/rhAmple-contracts
 	url = https://github.com/rhAmple/rhAmple-contracts
+[submodule "lib/forge-std"]
+	path = lib/forge-std
+	url = https://github.com/brockelmore/forge-std
