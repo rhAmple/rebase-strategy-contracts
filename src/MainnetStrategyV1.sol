@@ -27,12 +27,10 @@ contract MainnetStrategyV1 is IRebaseStrategy {
     // Storage
 
     /// @notice The Ample market price oracle address.
-    /// @dev Changeable by owner.
     /// @dev The value is in 18 decimal precision and cent denominated.
     address public immutable ampleMarketOracle;
 
     /// @notice The Ample CPI oracle address.
-    /// @dev Changeable by owner.
     /// @dev The price target is in 18 decimal precision cent denominated.
     address public immutable ampleCPIOracle;
 
