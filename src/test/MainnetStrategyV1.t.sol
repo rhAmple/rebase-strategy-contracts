@@ -1,18 +1,14 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity 0.8.10;
 
-import "ds-test/test.sol";
-
-import "forge-std/stdlib.sol";
+import "forge-std/Test.sol";
 import "forge-std/Vm.sol";
 
 import "../MainnetStrategyV1.sol";
 
 import {OracleMock} from "./utils/mocks/OracleMock.sol";
 
-contract MainnetStrategyV1Test is DSTest {
-    Vm internal constant vm = Vm(HEVM_ADDRESS);
-
+contract MainnetStrategyV1Test is Test {
     // SuT
     MainnetStrategyV1 strategy;
 
